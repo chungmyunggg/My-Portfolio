@@ -31,12 +31,17 @@ nav {
     width: 100%;
     background: rgba(15, 15, 15, 0.8);
     backdrop-filter: blur(12px);
-    padding: 1.2rem 2rem;
     z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.2rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--border-color);
 }
 
 .logo {
@@ -167,6 +172,40 @@ h2 span {
 .reason-card:hover {
     transform: translateY(-5px);
     border-color: var(--accent-color);
+}
+
+/* Clients Section */
+.clients-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 1rem;
+}
+
+.client-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.3s;
+}
+
+.client-item:hover {
+    transform: translateY(-5px);
+}
+
+.client-logo {
+    width: 60px;
+    height: 60px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--accent-color);
 }
 
 /* Gallery Grids */
