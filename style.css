@@ -1,9 +1,9 @@
 :root {
-    --bg-color: #0f0f0f;
-    --text-color: #f0f0f0;
+    --bg-color: #000000;
+    --text-color: #ffffff;
     --accent-color: #3b82f6; /* Modern electric blue */
-    --secondary-bg: #1a1a1a;
-    --card-bg: #252525;
+    --secondary-bg: #0a0a0a;
+    --card-bg: #151515;
     --border-color: #333;
 }
 
@@ -20,8 +20,31 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
+    background-attachment: fixed;
     color: var(--text-color);
     line-height: 1.6;
+}
+
+/* Moving Background Grid */
+.bg-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 2px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
+    animation: starMove 100s linear infinite;
+}
+
+@keyframes starMove {
+    0% { background-position: 0 0, 40px 60px, 130px 270px; }
+    100% { background-position: 550px 550px, 390px 410px, 380px 520px; }
 }
 
 /* Navigation */
@@ -64,6 +87,8 @@ nav {
 .nav-links a:hover {
     opacity: 1;
     color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+    letter-spacing: 0.5px;
 }
 
 /* Layout & Typography */
@@ -87,24 +112,58 @@ h2 span {
 
 /* 1. Introduction (Hero) */
 #intro {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 0 2rem;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #0f0f0f 70%);
+    text-align: left;
+    padding: 0 10%;
+    gap: 4rem;
+    position: relative;
+    background: transparent;
+    overflow: hidden;
 }
 
 #intro h1 {
-    font-size: clamp(3rem, 8vw, 5rem);
+    font-size: clamp(2rem, 8vw, 5rem);
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.3; /* Increased to prevent cutting off text */
     margin-bottom: 1.5rem;
-    background: linear-gradient(to right, #fff, #999);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    padding-bottom: 0.2em; /* Extra space for descenders */
+    padding-right: 0.6em; /* Increased to ensure 'r' is visible */
+    color: var(--text-color);
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+/* Text Hover Effect (Subtle Glow) */
+#intro h1:hover {
+    color: var(--text-color);
+    text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    transition: all 0.5s ease;
+}
+
+/* Liquid Text Container */
+#liquid-text-container {
+    width: 100%;
+    height: 250px; /* Adjust based on preferred spacing */
+    position: relative;
+    z-index: 10;
+}
+
+/* Remove old span hover effects */
+#intro h1 span {
+    /* Resetting previous interactive span styles if any remain */
+    display: inline;
+    transition: none;
+}
+
+#intro h1 span:hover {
+    transform: none;
+    color: var(--accent-color);
 }
 
 #intro p {
@@ -114,7 +173,146 @@ h2 span {
     margin-bottom: 2.5rem;
 }
 
+/* Hero CTA & Contact Info */
+.hero-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    backdrop-filter: blur(10px);
+    box-shadow: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+    position: relative;
+}
+
+.status-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+    100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.contact-details strong {
+    color: var(--accent-color);
+    margin-right: 0.5rem;
+}
+
+.intro-content {
+    flex: 1;
+    max-width: 650px;
+    z-index: 2;
+}
+
+.intro-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px; /* Creates the 3D space */
+}
+
+/* Profile Image Wrapper for Gradient Border */
+.profile-wrapper {
+    position: relative;
+    padding: 0;
+    background: transparent;
+    border-radius: 24px;
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-wrapper:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.2);
+}
+
+.profile-wrapper img {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    border-radius: 24px;
+    transition: transform 0.1s ease-out; /* Smooths the JS movement */
+    object-fit: cover;
+    background: var(--card-bg);
+}
+
+/* Mobile Responsive for Hero */
+@media (max-width: 968px) {
+    #intro {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 8rem 2rem 4rem;
+        gap: 2rem;
+    }
+
+    .hero-cta {
+        align-items: center;
+    }
+    
+    #intro p {
+        margin: 0 auto 2.5rem;
+    }
+
+    .intro-image img {
+        max-width: 280px;
+    }
+}
+
 .scroll-down {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    width: 100%;
+    text-align: center;
     font-size: 0.9rem;
     color: #666;
     animation: bounce 2s infinite;
@@ -128,7 +326,9 @@ h2 span {
 
 /* 2. Who I Am & What I Do */
 #about {
-    background-color: var(--secondary-bg);
+    background: rgba(26, 26, 26, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 24px;
     margin: 4rem auto;
 }

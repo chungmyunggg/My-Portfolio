@@ -7,9 +7,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.min.js"></script>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Shaders for Liquid Text -->
+    <script type="x-shader/x-vertex" id="vertexshader">
+        attribute float size;
+        attribute vec3 customColor;
+        varying vec3 vColor;
+        void main() {
+            vColor = customColor;
+            vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+            gl_PointSize = size * ( 300.0 / -mvPosition.z );
+            gl_Position = projectionMatrix * mvPosition;
+        }
+    </script>
+    <script type="x-shader/x-fragment" id="fragmentshader">
+        uniform vec3 color;
+        uniform sampler2D pointTexture;
+        varying vec3 vColor;
+        void main() {
+            gl_FragColor = vec4( color * vColor, 1.0 );
+            gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+        }
+    </script>
 </head>
 <body>
+
+    <div class="bg-grid"></div>
 
     <nav>
         <div class="nav-wrapper">
@@ -24,8 +49,22 @@
 
     <!-- 1. Introduction -->
     <header id="intro">
-        <h1>Visual Storyteller &<br>Video Editor</h1>
-        <p>Crafting high-retention edits for social media and cinematic narratives.</p>
+        <div class="intro-content">
+            <div id="liquid-text-container"></div>
+            <p>I shape videos that combine strong retention with thoughtful storytelling. My approach is simple — understand your vision, elevate your message, and deliver content that keeps your audience engaged from start to finish.</p>
+            <div class="hero-cta">
+                <button class="btn-primary"><span class="status-dot"></span>Available for Work</button>
+                <div class="contact-details">
+                    <span><strong>Email:</strong> johnroland758@gmail.com</span>
+                    <span><strong>OnlineJobs:</strong> John Roland Amene Samblacenio</span>
+                </div>
+            </div>
+        </div>
+        <div class="intro-image">
+            <div class="profile-wrapper">
+                <img src="pic assets for portfolio/prof.png" alt="John Samblacenio" id="profile-img">
+            </div>
+        </div>
         <div class="scroll-down">Scroll to explore</div>
     </header>
 
