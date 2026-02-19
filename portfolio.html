@@ -34,6 +34,7 @@
 </head>
 <body>
 
+    <div class="bg-stars"></div>
     <div class="bg-grid"></div>
 
     <nav>
@@ -69,7 +70,7 @@
     </header>
 
     <!-- 2. Who I Am & What I Do -->
-    <section id="about">
+    <section id="about" class="reveal">
         <div class="about-grid">
             <div class="about-text">
                 <h3>WHO I AM</h3>
@@ -89,7 +90,7 @@
     </section>
 
     <!-- 3. Why Work With Me -->
-    <section id="why-me">
+    <section id="why-me" class="reveal">
         <h2>Why Work <span>With Me</span></h2>
         <div class="reasons-grid">
             <div class="reason-card">
@@ -102,14 +103,60 @@
             </div>
             <div class="reason-card">
                 <h3>🎨 Creative & Adaptable</h3>
-                <p>My illustration background lets me create custom assets and unique visuals, and I’m flexible in adapting to different editing styles to fit any project..</p>
+                <p>My illustration background lets me create custom assets and unique visuals, and I’m flexible in adapting to different editing styles to fit any project.</p>
+            </div>
+        </div>
+
+        <!-- Tools & Proficiency Section -->
+        <div class="tools-section">
+            <h3>Tools & <span>Proficiency</span></h3>
+            <div class="tools-container">
+                <div class="tool-category-group">
+                    <h4>Video Editing</h4>
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <!-- DaVinci Resolve Icon -->
+                            <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="7" y1="3" x2="7" y2="21"></line><line x1="17" y1="3" x2="17" y2="21"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="7" x2="7" y2="7"></line><line x1="3" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="21" y2="17"></line><line x1="17" y1="7" x2="21" y2="7"></line></svg>
+                            <h5>DaVinci Resolve</h5>
+                        </div>
+                        <div class="star-rating" style="--rating: 3.0;"></div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <!-- CapCut Icon -->
+                            <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>
+                            <h5>CapCut Pro</h5>
+                        </div>
+                        <div class="star-rating" style="--rating: 4.2;"></div>
+                    </div>
+                </div>
+                <div class="tool-category-group">
+                    <h4>Illustration</h4>
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <!-- PaintTool SAI Icon -->
+                            <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                            <h5>PaintTool SAI 2</h5>
+                        </div>
+                        <div class="star-rating" style="--rating: 4.6;"></div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <!-- Adobe Illustrator Icon -->
+                            <svg class="tool-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                            <h5>Adobe Illustrator</h5>
+                        </div>
+                        <div class="star-rating" style="--rating: 3.0;"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Clients I've Worked With -->
-    <section id="clients">
+    <section id="clients" class="reveal">
         <h2>Clients <span>I've Worked With</span></h2>
+        <p class="section-subheading">I had the pleasure of collaborating with these companies on my digital illustration journey.</p>
         <div class="clients-grid">
             <div class="client-item">
                 <div class="client-logo">P</div> <!-- Replace with <img src="logo.png"> -->
@@ -135,9 +182,10 @@
     </section>
 
     <!-- 4. Vertical Showcase (TikTok, Reels, Shorts) -->
-    <section id="vertical">
+    <section id="vertical" class="reveal">
         <h2>Vertical <span>Showcase</span></h2>
         <p style="text-align: center; margin-bottom: 2rem; color: #666;">TikTok • Instagram Reels • YouTube Shorts</p>
+        <p style="text-align: center; margin-top: -1rem; margin-bottom: 2rem; color: #888;">All editing work was completed by me. Raw video materials are owned by and properly credited to their respective clients and content owners.</p>
         <div class="gallery-grid vertical-grid">
             <!-- Replace text with <video> or <img> tags -->
             <div class="video-item-vertical">
@@ -156,9 +204,10 @@
     </section>
 
     <!-- 5. Landscape Showcase -->
-    <section id="landscape">
+    <section id="landscape" class="reveal">
         <h2>Landscape <span>Projects</span></h2>
         <p style="text-align: center; margin-bottom: 2rem; color: #666;">YouTube • Commercials • Documentaries</p>
+        <p style="text-align: center; margin-top: -1rem; margin-bottom: 2rem; color: #888;">All editing work was completed by me. Raw video materials are owned by and properly credited to their respective clients and content owners.</p>
         <div class="gallery-grid landscape-grid">
             <div class="video-item-landscape">
                 <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Landscape Video 1" frameborder="0" allowfullscreen loading="lazy"></iframe>
@@ -176,21 +225,23 @@
     </section>
 
     <!-- 6. Illustrations -->
-    <section id="illustrations">
+    <section id="illustrations" class="reveal">
         <h2>Illustration <span>Gallery</span></h2>
+        <p class="section-subheading">Below are some of my digital illustrations, featuring work from company projects.</p>
         <div class="gallery-grid illustration-grid">
             <div class="art-item"><div class="placeholder">Artwork 01</div></div>
             <div class="art-item"><div class="placeholder">Artwork 02</div></div>
             <div class="art-item"><div class="placeholder">Artwork 03</div></div>
+            <div class="art-item"><div class="placeholder">Artwork 04</div></div>
         </div>
     </section>
 
     <footer>
-        <h2>Ready to create?</h2>
-        <br>
-        <a href="mailto:your-email@example.com">your-email@example.com</a>
-        <br><br><br>
-        <p>&copy; 2023 Portfolio. All rights reserved.</p>
+        <h2>Ready to create something <span>extraordinary?</span></h2>
+        <p>Let's turn your ideas into compelling visual stories. Reach out today.</p>
+        <a href="mailto:johnroland758@gmail.com" class="email-link">johnroland758@gmail.com</a>
+        <br><br><br><br>
+        <p style="opacity: 0.5;">&copy; 2023 John Samblacenio. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>

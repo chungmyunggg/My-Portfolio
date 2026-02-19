@@ -20,6 +20,23 @@ document.addEventListener('DOMContentLoaded', () => {
             profileImg.style.transform = `rotateY(0deg) rotateX(0deg)`;
         });
     }
+
+    // Scroll Reveal Animation
+    const reveals = document.querySelectorAll('.reveal');
+    
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Animate only once
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    reveals.forEach(reveal => revealOnScroll.observe(reveal));
 });
 
 // --- Liquid Text Animation (Three.js) ---
