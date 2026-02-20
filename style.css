@@ -81,7 +81,7 @@ nav {
 }
 
 .nav-wrapper {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding: 1.2rem 2rem;
     display: flex;
@@ -116,7 +116,7 @@ nav {
 /* Layout & Typography */
 section {
     padding: 6rem 2rem;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 
@@ -148,11 +148,14 @@ h2 span {
     justify-content: center;
     align-items: center;
     text-align: left;
-    padding: 0 10%;
+    padding: 0 2rem;
     gap: 4rem;
     position: relative;
     background: transparent;
     overflow: hidden;
+    /* Unify width with other sections */
+    max-width: 1500px;
+    margin: 0 auto;
 }
 
 #intro h1 {
@@ -357,21 +360,46 @@ h2 span {
 
 /* 2. Who I Am & What I Do */
 #about {
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    margin: 4rem auto;
+    display: grid;
+    grid-template-columns: 1fr 360px 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about-container {
     background: rgba(26, 26, 26, 0.4);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 24px;
-    margin: 4rem auto;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.about-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 4rem;
-    align-items: start;
+.about-container:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
-
-.about-text h3 {
+    
+.about-image-bg {
+    background: url('pic assets for portfolio/chibi.png') no-repeat center center;
+    background-size: contain;
+    min-height: 420px;
+    transition: transform 0.3s ease;
+}
+    
+    .about-image-bg:hover {
+        transform: translateY(-5px);
+}
+    
+    .about-container h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--accent-color);
@@ -379,11 +407,18 @@ h2 span {
     letter-spacing: 1px;
     font-size: 0.9rem;
 }
-
-.about-text p {
+    
+    .about-container p {
     font-size: 1.1rem;
     color: #ccc;
     text-align: justify;
+}
+    
+@media (max-width: 968px) {
+        #about {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
 }
 
 /* 3. Why Work With Me */
@@ -474,6 +509,11 @@ h2 span {
     height: 32px;
     color: var(--accent-color);
     flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.tool-card:hover .tool-icon {
+    transform: scale(1.2) rotate(5deg);
 }
 
 .tool-header h5 {
@@ -534,6 +574,14 @@ h2 span {
     font-weight: 800;
     color: var(--accent-color);
     font-size: 2.2rem;
+    transition: all 0.3s ease;
+}
+
+.client-item:hover .client-logo {
+    background: var(--accent-color);
+    color: white;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    border-color: var(--accent-color);
 }
 
 .client-item p {
@@ -562,7 +610,7 @@ h2 span {
 
 /* 4. Vertical Showcase (9:16) */
 .vertical-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 2.5rem;
 }
 
@@ -571,11 +619,18 @@ h2 span {
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-item-vertical:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
 /* 5. Landscape Showcase (16:9) */
 .landscape-grid {
-    grid-template-columns: repeat(auto-fill, minmax(550px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
 }
 
@@ -584,6 +639,13 @@ h2 span {
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-item-landscape:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
 /* Ensure iframes fill their containers */
@@ -593,20 +655,35 @@ h2 span {
     height: 100%;
 }
 
-/* 6. Illustrations */
+/* 6. Illustrations - Auto-scrolling Carousel */
+.illustration-carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+    /* Add a fade effect on the edges for a cleaner look */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
 .illustration-grid {
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    gap: 2.5rem;
+    display: flex;
+    gap: 2rem;
+    will-change: transform;
 }
 
 .art-item {
-    aspect-ratio: 1/1; /* Square for grid uniformity */
+    flex-shrink: 0; /* Prevent items from shrinking */
+    width: clamp(300px, 25vw, 420px); /* Responsive width: min, ideal, max */
+    aspect-ratio: 1/1;
     border-radius: 12px;
     overflow: hidden;
     background: #222;
     border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
-
+.art-item:hover {
+    transform: scale(1.03);
+    border-color: var(--accent-color);
+}
 /* Scroll Reveal Animation */
 .reveal {
     opacity: 0;
@@ -618,7 +695,6 @@ h2 span {
     opacity: 1;
     transform: translateY(0);
 }
-
 /* Footer */
 footer {
     text-align: center;
@@ -656,10 +732,9 @@ footer .email-link:hover {
     transform: translateY(-5px);
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
     .nav-links { display: none; }
-    .landscape-grid, .vertical-grid, .illustration-grid { grid-template-columns: 1fr; }
+    .landscape-grid, .vertical-grid { grid-template-columns: 1fr; }
     section { padding: 4rem 1.5rem; }
     footer h2 { font-size: 2rem; }
     footer .email-link { font-size: 1.1rem; padding: 0.8rem 2rem; }

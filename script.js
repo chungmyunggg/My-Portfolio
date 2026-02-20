@@ -37,6 +37,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     reveals.forEach(reveal => revealOnScroll.observe(reveal));
+
+    // Infinite Carousel for Illustration Gallery
+    const illustrationGrid = document.querySelector('.illustration-grid');
+    const carouselWrapper = document.querySelector('.illustration-carousel-wrapper');
+
+    if (illustrationGrid && carouselWrapper) {
+        // Clone items for a seamless loop
+        const items = Array.from(illustrationGrid.children);
+        items.forEach(item => {
+            const clone = item.cloneNode(true);
+            illustrationGrid.appendChild(clone);
+        });
+
+        let scrollPos = 0;
+        let direction = 1; // 1 = left, -1 = right
+        let speed = 0.5; // Default slow speed
+
+        const animate = () => {
+            const totalWidth = illustrationGrid.scrollWidth;
+            const halfWidth = totalWidth / 2;
+
+            scrollPos -= speed * direction;
+
+            // Handle wrapping for infinite loop
+            if (scrollPos <= -halfWidth) scrollPos += halfWidth;
+            else if (scrollPos > 0) scrollPos -= halfWidth;
+
+            illustrationGrid.style.transform = `translateX(${scrollPos}px)`;
+            requestAnimationFrame(animate);
+        };
+
+        carouselWrapper.addEventListener('mousemove', (e) => {
+            const rect = carouselWrapper.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            direction = x < rect.width / 2 ? 1 : -1; // Left half = 1, Right half = -1
+            speed = 2; // Speed up on hover
+        });
+
+        carouselWrapper.addEventListener('mouseleave', () => {
+            direction = 1; // Reset to default left
+            speed = 0.5; // Reset to default speed
+        });
+
+        requestAnimationFrame(animate);
+    }
 });
 
 // --- Liquid Text Animation (Three.js) ---
