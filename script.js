@@ -28,11 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Animate only once
+            } else {
+                entry.target.classList.remove('active');
             }
         });
     }, {
-        threshold: 0.1,
+        threshold: 0.15,
         rootMargin: "0px 0px -50px 0px"
     });
 
@@ -117,6 +118,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Lazy Load YouTube Videos (Custom Thumbnail + Play Button)
+    const videoItems = document.querySelectorAll('.video-item-vertical, .video-item-landscape');
+
+    videoItems.forEach(item => {
+        item.addEventListener('click', function() {
+            if (this.querySelector('iframe')) return; // Already loaded
+
+            const videoId = this.getAttribute('data-video-id');
+            if (!videoId) return;
+
+            const iframe = document.createElement('iframe');
+            iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&disablekb=1&iv_load_policy=3`);
+            iframe.setAttribute('title', 'YouTube video player');
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+            iframe.setAttribute('allowfullscreen', '');
+            
+            // Clear thumbnail and play button, then append iframe
+            this.innerHTML = '';
+            this.appendChild(iframe);
+        });
+    });
 });
 
 // --- Liquid Text Animation (Three.js) ---
