@@ -69,6 +69,42 @@ body {
     100% { background-position: 1000px 1000px, 1050px 1050px; }
 }
 
+/* Additional Star Layers for Density and Shine */
+.bg-stars-2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 2px),
+        radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 2px);
+    background-size: 275px 275px, 110px 110px;
+    background-position: 10px 10px, 50px 90px;
+    animation: starMove 130s linear infinite, twinkle 4s ease-in-out infinite alternate;
+}
+
+.bg-stars-3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 1px),
+        radial-gradient(white, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 250px 250px, 200px 200px;
+    background-position: 100px 20px, 20px 150px;
+    animation: starMove2 200s linear infinite, twinkle 6s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
 /* Navigation */
 nav {
     position: fixed;
@@ -674,6 +710,31 @@ h2 span {
     height: 100%;
     border-radius: 12px; /* Inner radius to reveal the parent's padding/border */
     display: block;
+}
+
+/* Overlay to disable interaction with YouTube top-right buttons (Share/Watch Later) */
+.video-item-vertical::after,
+.video-item-landscape::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 60px;
+    z-index: 5;
+    background: transparent;
+}
+
+/* Overlay to disable interaction with "Watch on YouTube" button (Bottom Right) for Landscape */
+.video-item-landscape::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 240px;
+    height: 60px;
+    z-index: 5;
+    background: transparent;
 }
 
 @keyframes gradientBorder {
